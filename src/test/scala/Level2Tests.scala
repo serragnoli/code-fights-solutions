@@ -1,8 +1,8 @@
-import org.scalatest.{BeforeAndAfter, FunSuite}
-import org.scalatest.prop.TableDrivenPropertyChecks._
 import org.scalatest.Matchers._
+import org.scalatest.prop.TableDrivenPropertyChecks._
+import org.scalatest.{BeforeAndAfter, FunSuite}
 
-class Level2Tests extends FunSuite with BeforeAndAfter {
+class Level2Task1Test extends FunSuite with BeforeAndAfter {
 
   val myArrays = Table(
     ("arrays", "expected"),
@@ -25,6 +25,32 @@ class Level2Tests extends FunSuite with BeforeAndAfter {
   test("verify adjacent elements products") {
     forAll(myArrays) { (array, expected) =>
       val result = l2t1.adjacentElementProduct(array)
+
+      result should be(expected)
+    }
+  }
+}
+
+class Level2Task3Test extends FunSuite with BeforeAndAfter {
+
+  val arrays = Table(
+    ("statues", "expected"),
+    (Array[Int](6, 2, 3, 8), 3),
+    (Array[Int](0, 3), 2),
+    (Array[Int](5, 4, 6), 0),
+    (Array[Int](6, 3), 2),
+    (Array[Int](1), 0)
+  )
+
+  var l2t3: Level2Task3 = _
+
+  before {
+    l2t3 = new Level2Task3
+  }
+
+  test("validate make array consecutive") {
+    forAll(arrays) { (statues: Array[Int], expected: Int) =>
+      val result = l2t3.makeArrayConsecutive(statues)
 
       result should be(expected)
     }
