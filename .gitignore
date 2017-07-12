@@ -1,6 +1,0 @@
-*.class
-*.log
-target/
-.idea/
-project/
-src/main/scala-2.12/
